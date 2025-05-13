@@ -366,12 +366,13 @@
             </div>
         </div>
         <hr />
+        <div id="ondes" class="cards"></div>
         <div
             class="cards"
             id="shb"
             aria-roledescription="Show important cards in deck"
         >
-            <div class="card" title="Titania" style="z-index: 1">
+            <label class="card" title="Titania" data-weight="4">
                 <a class="img"
                     ><img
                         loading="lazy"
@@ -380,8 +381,8 @@
                 <div class="description">
                     Fae queen of sorrow, her silken waltz heralds mortal peril.
                 </div>
-            </div>
-            <div class="card" title="Innocence" style="z-index: 2">
+            </label>
+            <label class="card" title="Innocence" data-weight="4">
                 <a class="img"
                     ><img
                         loading="lazy"
@@ -390,8 +391,8 @@
                 <div class="description">
                     Paladin of lost hope, his radiant blade severs fate's bonds.
                 </div>
-            </div>
-            <div class="card" title="Hades" style="z-index: 3">
+            </label>
+            <label class="card" title="Hades" data-weight="8">
                 <a class="img"
                     ><img
                         loading="lazy"
@@ -401,8 +402,8 @@
                     Hades is one of three unsundered Ascians working to bring
                     about the Rejoining.
                 </div>
-            </div>
-            <div class="card" title="Warrior of Light" style="z-index: 4">
+            </label>
+            <label class="card" title="Warrior of Light" data-weight="9">
                 <a class="img"
                     ><img
                         loading="lazy"
@@ -413,8 +414,8 @@
                     as a world filled entirely with either element would become
                     a void and be of no use for his master.
                 </div>
-            </div>
-            <div class="card" title="Ruby Weapon" style="z-index: 5">
+            </label>
+            <label class="card" title="Ruby Weapon" data-weight="5">
                 <a class="img"
                     ><img
                         loading="lazy"
@@ -424,8 +425,8 @@
                     Living weapon of destruction, its molten form erases all
                     light.
                 </div>
-            </div>
-            <div class="card" title="Emerald Weapon" style="z-index: 6">
+            </label>
+            <label class="card" title="Emerald Weapon" data-weight="5">
                 <a class="img"
                     ><img
                         loading="lazy"
@@ -435,8 +436,8 @@
                     “Titanic construct of malice, its emerald sheath hides
                     endless dread.
                 </div>
-            </div>
-            <div class="card" title="Diamond Weapon" style="z-index: 7">
+            </label>
+            <label class="card" title="Diamond Weapon" data-weight="6">
                 <a class="img"
                     ><img
                         loading="lazy"
@@ -446,7 +447,30 @@
                     Celestial juggernaut of ruin, its crystalline frame rends
                     the sky.
                 </div>
-            </div>
+            </label>
         </div>
     </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            Array.from(document.querySelectorAll('#shb .card')).forEach((card) => {
+                //Pour chaque carte, créer une onde
+                const onde = document.createElement('label');
+                onde.classList = 'onde';
+                onde.htmlFor = card.title.replace(/\s+/g, '') +'Input';
+                onde.style.height = card.dataset.weight + 'rem';
+                onde.title = card.title;
+                document.querySelector('#ondes').appendChild(onde);
+
+                onde.addEventListener('click', function(event){
+                    Array.from(document.querySelectorAll('#shb .card')).forEach((toShow) => {
+                        if(toShow.title === card.title){
+                            toShow.style.display = 'block';
+                        }else{
+                            toShow.style = '';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </html>

@@ -13,6 +13,7 @@ body {
     height: 100vh;
     background-color: var(--color-black);
     color: var(--color-lightgrey);
+    overflow-x: hidden;
 }
 
 h3 {
@@ -472,17 +473,61 @@ hr {
 /**
  * SB
  */
-#sb{
+#sb {
     overflow: hidden;
     max-height: 22rem;
     margin: 0.5rem auto;
     width: 30rem;
 }
 
-#sb .card{
+#sb .card {
     margin: 20rem -14rem 0 0rem;
 }
 
-#sb .card:hover{
+#sb .card:hover {
     margin: 1rem -14rem 0 0rem;
+}
+
+/**
+ * ShB
+ */
+#ondes {
+    display: flex;
+    align-items: center;    /* Align cards vertically within the container */
+    justify-content: center; /* Optional: align horizontally too */
+    height: 30rem;
+    overflow-x: auto;
+    margin: -10rem 0;
+}
+
+#ondes .onde {
+    min-width: 0;
+    max-width: 0;
+    overflow: hidden;
+    border: 2px solid var(--color-lightgrey);
+    margin: 0 1px;
+    transition: margin 2s ease;
+    cursor: pointer;
+}
+
+
+#ondes .onde:hover {
+    border: 2px solid var(--color-brown);
+}
+
+#shb .card{
+    display: none;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#shb .card::after{
+        content: attr(data-weight);
+    display: block;
+    margin: -2rem 0;
+    float: right;
+    background: var(--color-brown);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
 }
