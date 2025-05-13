@@ -405,7 +405,7 @@ hr {
 }
 
 #arr .card:hover {
-    margin: 0 -7rem 0 8rem;
+    margin: 0 -7rem 0 7rem;
 }
 
 #arr .card:first-child {
@@ -474,15 +474,15 @@ hr {
  */
 #sb{
     overflow: hidden;
-    max-height: 20rem;
+    max-height: 22rem;
     margin: 0.5rem auto;
     width: 30rem;
 }
 
 #sb .card{
-    margin: 18rem -14rem 0 0rem;
+    margin: 20rem -14rem 0 0rem;
 }
 
 #sb .card:hover{
-    margin: 0 -14rem 0 0rem;
+    margin: 1rem -14rem 0 0rem;
 }
