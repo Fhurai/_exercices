@@ -1,0 +1,469 @@
+:root {
+    --color-black: #1f1f1f;
+    --color-white: #f1f1f1;
+    --color-darkgrey: #3e3e3e;
+    --color-lightgrey: #e3e3e3;
+    --color-brown: #634b36;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: var(--color-black);
+    color: var(--color-lightgrey);
+}
+
+h3 {
+    text-align: center;
+}
+
+a {
+    color: var(--color-lightgrey);
+    text-decoration: none;
+}
+
+hr {
+    width: 100%;
+}
+
+/**
+ * Cards, in general
+ */
+
+.cards {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.card {
+    min-width: 15rem;
+    max-width: 15rem;
+    height: 20rem;
+    border: 2px solid var(--color-brown);
+    border-radius: 0.5rem;
+    margin: 0 0.5rem;
+    background-color: var(--color-darkgrey);
+}
+
+.card::before {
+    content: attr(title);
+    display: block;
+    background-color: var(--color-brown);
+    margin: 0.5rem;
+    border-radius: 0.25rem;
+    padding-left: 0.5rem;
+}
+
+.card a.img {
+    border: 2px inset var(--color-brown);
+    margin: 0 1rem;
+    display: flex;
+    width: auto;
+    height: 12rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card a.img img {
+    width: 14rem;
+    height: auto;
+    background-color: var(--color-white);
+}
+
+.card .description {
+    margin: 0.25rem 0.5rem;
+    border: 1px dotted var(--color-brown);
+    height: 4.5rem;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+}
+
+/**
+ * Individual card
+ */
+
+.cards .card[title="Ifrit"] {
+    background-color: #7b1e1e;
+    color: #f49b36;
+}
+
+.cards .card[title="Ifrit"] a.img img {
+    height: 12rem;
+    width: auto;
+    margin-left: 10rem;
+}
+
+.cards .card[title="Titan"] {
+    background-color: #5d4037;
+    color: #e4da56;
+}
+
+.cards .card[title="Garuda"] {
+    background-color: #1e7522;
+    color: #aed581;
+}
+
+.cards .card[title="Garuda"] a.img img {
+    height: 12rem;
+    width: auto;
+    margin-right: 6rem;
+}
+
+.cards .card[title="Ultima Weapon"] {
+    background-color: #212121;
+    color: #9e9e9e;
+}
+
+.cards .card[title="Good King Moggle Mog XII"] {
+    background-color: #6a1b9a;
+    color: #f6c0ff;
+}
+
+.cards .card[title="Leviathan"] {
+    background-color: #0d47a1;
+    color: #81d4fa;
+}
+
+.cards .card[title="Ramuh"] {
+    background-color: #4a148c;
+    color: #9575cd;
+}
+
+.cards .card[title="Shiva"] {
+    background-color: #01579b;
+    color: #b3e5fc;
+}
+
+.cards .card[title="Shiva"] a.img img {
+    margin-top: 10rem;
+}
+
+.cards .card[title="Nabriales"] {
+    background-color: #251472;
+    color: #81719e;
+}
+
+.cards .card[title="Nabriales"] a.img img {
+    margin-top: 10rem;
+}
+
+.cards .card[title="Odin"] {
+    background-color: #1b1b1b;
+    color: #bdbdbd;
+}
+
+.cards .card[title="Odin"] a.img img {
+    height: 12rem;
+    width: auto;
+}
+
+.cards .card[title="The Chimera"] {
+    background-color: #4e342e;
+    color: #d7ccc8;
+}
+
+.cards .card[title="The Chimera"] a.img img {
+    height: 12rem;
+    width: auto;
+    margin-left: 2rem;
+}
+
+.cards .card[title="The Hydra"] {
+    background-color: #a0921a;
+    color: #b0bec5;
+}
+
+.cards .card[title="The Hydra"] a.img img {
+    height: 12rem;
+    width: auto;
+    margin-right: 8rem;
+}
+
+.cards .card[title="Gilgamesh"] {
+    background-color: #3e2723;
+    color: #ffcc80;
+}
+
+.cards .card[title="Gilgamesh"] a.img img {
+    height: 12rem;
+    width: auto;
+}
+
+.cards .card[title="Orthros & Typhoon"] {
+    background-color: #bf360c;
+    color: #ffab91;
+}
+
+.cards .card[title="Gilgamesh & Enkidu"] {
+    background-color: #4e342e;
+    color: #a1887f;
+}
+
+.cards .card[title="Gilgamesh & Enkidu"] a.img img {
+    height: 12rem;
+    width: auto;
+}
+
+.cards .card[title="Ravana"] {
+    background-color: #880e0e;
+    color: #3ea3ca;
+}
+
+.cards .card[title="Ravana"] a.img img {
+    height: 12rem;
+    width: auto;
+}
+
+.cards .card[title="Bismarck"] {
+    background-color: #21485c;
+    color: #b0bec5;
+}
+
+.cards .card[title="Bismarck"] a.img img {
+    height: 12rem;
+    width: auto;
+}
+
+.cards .card[title="Knights of the Round"] {
+    background-color: #3f51b5;
+    color: #c5cae9;
+}
+
+.cards .card[title="Knights of the Round"] a.img img {
+    height: 12rem;
+    width: auto;
+}
+
+.cards .card[title="Nidhogg"] {
+    background-color: #4a148c;
+    color: #ce93d8;
+}
+
+.cards .card[title="Nidhogg"] a.img img {
+    height: 12rem;
+    width: auto;
+}
+
+.cards .card[title="Sephirot"] {
+    background-color: #2e7d32;
+    color: #c5e1a5;
+}
+
+.cards .card[title="Sephirot"] a.img img {
+    height: 12rem;
+    width: auto;
+}
+
+.cards .card[title="Sophia"] {
+    background-color: #6d4c41;
+    color: #eec12e;
+}
+
+.cards .card[title="Zurvan"] {
+    background-color: #bf0c0c;
+    color: #7ccdd3;
+}
+
+.cards .card[title="Susanoo"] {
+    background-color: #0d47a1;
+    color: #90caf9;
+}
+
+.cards .card[title="Lakshmi"] {
+    background-color: #ad1457;
+    color: #f8bbd0;
+}
+
+.cards .card[title="Shinryu"] {
+    background-color: #0a3d0e;
+    color: #80deea;
+}
+
+.cards .card[title="Shinryu"] a.img img {
+    height: 12rem;
+    width: auto;
+}
+
+.cards .card[title="Tsukuyomi"] {
+    background-color: #4527a0;
+    color: #d1c4e9;
+}
+
+.cards .card[title="Byakko"] {
+    background-color: #37474f;
+    color: #cfd8dc;
+}
+
+.cards .card[title="Suzaku"] {
+    background-color: #d84315;
+    color: #ffab91;
+}
+
+.cards .card[title="Suzaku"] a.img img {
+    height: 12rem;
+    width: auto;
+}
+
+.cards .card[title="Seiryu"] {
+    background-color: #1e88e5;
+    color: #81d4fa;
+}
+
+.cards .card[title="Rathalos"] {
+    background-color: #c62828;
+    color: #ef9a9a;
+}
+
+.cards .card[title="Yojimbo"] {
+    background-color: #6e1e1e;
+    color: #ffcc80;
+}
+
+.cards .card[title="Yojimbo"] a.img img {
+    margin-top: 4rem;
+}
+
+.cards .card[title="Titania"] {
+    background-color: #7b1fa2;
+    color: #e1bee7;
+}
+
+.cards .card[title="Titania"] a.img img {
+    height: 12rem;
+    width: auto;
+}
+
+.cards .card[title="Innocence"] {
+    background-color: #fbc02d;
+    color: #fff59d;
+}
+
+.cards .card[title="Innocence"] a.img img {
+    height: 12rem;
+    width: auto;
+    margin-right: 4rem 64px;
+}
+
+.cards .card[title="Hades"]::before {
+    color: #ed69bb;
+}
+
+.cards .card[title="Hades"] {
+    background-color: #212121;
+    color: #733e71;
+}
+
+.cards .card[title="Warrior of Light"] {
+    background-color: #1a237e;
+    color: #e2d73d;
+}
+
+.cards .card[title="Ruby Weapon"] {
+    background-color: #b71c1c;
+    color: #ef9a9a;
+}
+
+.cards .card[title="Emerald Weapon"] {
+    background-color: #2e7d32;
+    color: #b38b37;
+}
+
+.cards .card[title="Emerald Weapon"] a.img img {
+    height: 12rem;
+    width: auto;
+}
+
+.cards .card[title="Diamond Weapon"] {
+    background-color: #455a64;
+    color: #ada41e;
+}
+
+.cards .card[title="Diamond Weapon"] a.img img {
+    height: 12rem;
+    width: auto;
+}
+
+/**
+ * ARR
+ */
+#arr {
+    margin: 0.5rem auto;
+    width: 30rem;
+}
+
+#arr .card {
+    position: relative;
+    margin: 0 -7rem;
+    cursor: grab;
+    transition: margin 2s ease;
+}
+
+#arr .card:hover {
+    margin: 0 -7rem 0 8rem;
+}
+
+#arr .card:first-child {
+    position: relative;
+    margin: 0 -7rem 0 0;
+    cursor: grab;
+    transition: margin 2s ease;
+}
+
+/**
+ * HW
+ */
+#hw {
+    margin: 0.5rem auto;
+    width: 30rem;
+    perspective: 1000px; /* Add perspective to parent for 3D transforms */
+}
+
+#hw .card {
+    position: relative;
+    margin: 0 -7rem;
+    cursor: grab;
+    transition: transform 1s ease, margin 2s ease;
+    transform-style: preserve-3d; /* Enable 3D children (if needed) */
+    backface-visibility: hidden; /* Ensure rotated faces are visible */
+}
+
+#hw .card:hover {
+    margin: 0 3.5rem 0 2rem;
+}
+
+#hw .card:nth-child(1) {
+    transform: rotateY(-70deg);
+}
+
+#hw .card:nth-child(2) {
+    transform: rotateY(-70deg);
+}
+
+#hw .card:nth-child(3) {
+    transform: rotateY(-70deg);
+}
+
+#hw .card:nth-child(4) {
+    transform: rotateY(-70deg);
+}
+
+#hw .card:nth-child(5) {
+    transform: rotateY(-70deg);
+}
+
+#hw .card:nth-child(6) {
+    transform: rotateY(-70deg);
+}
+
+#hw .card:nth-child(7) {
+    transform: rotateY(-70deg);
+}
+
+#hw .card:hover {
+    transform: rotateY(0deg);
+}

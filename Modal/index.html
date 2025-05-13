@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Modal</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <h3><a href="../index.html">Parent</a></h3>
+        <label for="inButton" class="button">Button 1</label>
+        <input type="checkbox" id="inButton" />
+        <label for="inButton" class="backdrop"></label>
+        <div id="modal1" class="modal">
+            <div class="header">Modal</div>
+            <div class="body">Body of the modal</div>
+            <div class="footer">
+                <label for="inButton">Cancel</label>
+            </div>
+        </div>
+
+        <hr/>
+
+        <button>Button 2</button>
+        <div for="btn" class="backdrop">
+            <div id="modal2" data-header="Modal">
+                <div class="header">Modal</div>
+                <div class="body">Body of the modal</div>
+                <div class="footer">
+                    <button for="inButton">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="./index.js"></script>
+    </body>
+</html>

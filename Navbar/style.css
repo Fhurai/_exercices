@@ -1,0 +1,127 @@
+:root {
+    --color-black: #1f1f1f;
+    --color-white: #f1f1f1;
+    --color-darkgrey: #3e3e3e;
+    --color-lightgrey: #e3e3e3;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: var(--color-black);
+    color: var(--color-lightgrey);
+}
+
+h3 {
+    text-align: center;
+}
+
+a {
+    color: var(--color-lightgrey);
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 2.5rem 0;
+    width: calc(100% - 2px);
+}
+
+nav.aNavBar {
+    border-color: var(--color-lightgrey);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0 0 1rem 1rem;
+}
+
+nav.bNavBar {
+    background-color: var(--color-white);
+    color: var(--color-darkgrey);
+}
+
+nav .title {
+    padding: 1rem;
+}
+
+nav hr {
+    margin: 0;
+    height: auto;
+}
+
+nav input {
+    display: none;
+}
+
+nav label {
+    width: 0;
+    overflow: hidden;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    width: calc(100% - 10rem);
+    padding: 0 0.5rem;
+    margin: 0;
+}
+
+nav ul li {
+    padding-top: 1rem;
+}
+
+nav.aNavBar ul li:hover {
+    background-color: var(--color-darkgrey);
+}
+
+nav.bNavBar ul li:hover {
+    background-color: var(--color-lightgrey);
+    border-radius: 1rem;
+}
+
+nav ul li a {
+    color: unset;
+    padding: 1rem;
+}
+
+@media (max-width: 544px) {
+    nav label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        padding: 0.5rem;
+        width: 2rem;
+        cursor: pointer;
+    }
+
+    nav input ~ ul {
+        border-top: 1px solid transparent;
+        max-height: 0;
+        padding: 0;
+        transition: max-height 1s ease-in-out, border-color 1s;
+    }
+
+    nav input:checked ~ ul {
+        max-height: 187px;
+        padding-bottom: 1rem;
+    }
+
+    nav ul {
+        flex-flow: column;
+        position: relative;
+        width: 100%;
+        padding-bottom: 1rem;
+        overflow: hidden;
+    }
+
+    nav.aNavBar input:checked ~ ul {
+        border-color: var(--color-lightgrey);
+    }
+
+    nav.bNavBar input:checked ~ ul {
+        border-color: var(--color-darkgrey);
+    }
+}

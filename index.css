@@ -1,0 +1,50 @@
+:root{
+    --color-black: #1f1f1f;
+    --color-white: #f1f1f1;
+    --color-darkgrey: #3e3e3e;
+    --color-lightgrey: #e3e3e3;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-black);
+    color: var(--color-lightgrey);
+}
+
+h1{
+    margin: 0;
+    padding: 0.67em;
+    background-color: var(--color-darkgrey);
+    color: var(--color-white);
+}
+
+h1 p.advice{
+    margin: 0;
+    font-size: 10px;
+    font-style: italic;
+}
+
+ul li{
+    display: none;
+    margin: 0.5rem auto;
+}
+
+ul li:has(a[href]){
+    display: block;
+}
+
+ul li a[href]{
+    color: var(--color-lightgrey);
+    text-decoration: unset;
+}
+
+ul li a[href]:hover{
+    filter: brightness(0.75);
+}
+
+ul li a[href]:visited{
+    filter: brightness(0.75);
+}
