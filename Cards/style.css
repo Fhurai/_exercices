@@ -396,7 +396,9 @@ hr {
  */
 #arr {
     margin: 0.5rem auto;
-    width: 30rem;
+    max-width: 50rem;
+    overflow: auto;
+    height: 24rem;
 }
 
 #arr .card {
