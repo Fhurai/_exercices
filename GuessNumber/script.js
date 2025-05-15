@@ -15,7 +15,7 @@ function startScreen() {
     panel.classList = "panel";
     panel.innerHTML = `
         <label for="maxNumber">Max value to guess :</label>
-        <input id="maxNumber" type="number" placeholder="Max number to guess" />
+        <input id="maxNumber" min="1" type="number" placeholder="Max number to guess" />
         <button id="enterButton">Enter</button>`;
     document.body.appendChild(panel);
 
