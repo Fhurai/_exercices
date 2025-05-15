@@ -1,0 +1,65 @@
+:root {
+    --color-black: #1f1f1f;
+    --color-white: #f1f1f1;
+    --color-darkgrey: #3e3e3e;
+    --color-lightgrey: #e3e3e3;
+    --color-red: #e26666;
+    --color-blue: #68a3da;
+    --color-green: #84ca84;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: var(--color-black);
+    color: var(--color-lightgrey);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+h3 {
+    text-align: center;
+}
+
+a {
+    color: var(--color-lightgrey);
+    text-decoration: none;
+}
+
+select{
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+/**
+ */
+.board {
+    border: 1px solid var(--color-lightgrey);
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+}
+
+.board .row {
+    height: 2rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+#win {
+    color: var(--color-green);
+    padding: 0 0.5rem;
+}
+
+#draw {
+    color: var(--color-blue);
+    padding: 0 0.5rem;
+}
+
+#loss {
+    color: var(--color-red);
+    padding: 0 0.5rem;
+}
