@@ -1,0 +1,63 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* Ensure that the parent container of all the droplets takes full width */
+.wave-container {
+  display: flex;
+  flex-wrap: nowrap; 
+  justify-content: center; /* Center droplets horizontally */
+  gap: 2px; /* Space between droplets */
+  overflow: hidden;
+}
+
+/* Style for each droplet */
+.droplet {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Align the droplet's content to the center */
+  justify-content: flex-end; /* Align the elements at the bottom of the container */
+}
+
+/* Modulation section of each droplet */
+.modulation {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the items horizontally */
+  justify-content: center; /* Space out the upper, base, and lower */
+  height: 100%; /* Ensures the modulation takes up the full height of its container */
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+/* Base element should be centered */
+.base {
+  width: 2px;
+  height: 2px; 
+  background-color: red;
+  border-radius: 2px; /* Optional: add rounded corners */
+}
+
+/* Upper and lower elements of the modulation */
+.upper, .lower {
+  width: 2px; /* Ensure these elements are the same width as the base */
+  background-color: #999; /* Set color for the upper and lower parts */
+  border-radius: 2px; /* Optional: rounded corners */
+}
+
+.upper {
+  /* Set specific height for upper elements */
+  height: auto; /* Dynamic height based on inline styles */
+}
+
+.lower {
+  /* Set specific height for lower elements */
+  height: auto; /* Dynamic height based on inline styles */
+}
