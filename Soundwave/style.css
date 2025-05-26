@@ -16,6 +16,7 @@ body {
   justify-content: center; /* Center droplets horizontally */
   gap: 2px; /* Space between droplets */
   overflow: hidden;
+  height: 100vh;
 }
 
 /* Style for each droplet */
@@ -33,21 +34,20 @@ body {
   align-items: center; /* Center the items horizontally */
   justify-content: center; /* Space out the upper, base, and lower */
   height: 100%; /* Ensures the modulation takes up the full height of its container */
-  padding: 2px;
   box-sizing: border-box;
 }
 
 /* Base element should be centered */
 .base {
-  width: 2px;
+  width: 1px;
   height: 2px; 
   background-color: red;
-  border-radius: 2px; /* Optional: add rounded corners */
+  border-radius: 1px; /* Optional: add rounded corners */
 }
 
 /* Upper and lower elements of the modulation */
 .upper, .lower {
-  width: 2px; /* Ensure these elements are the same width as the base */
+  width: 1px; /* Ensure these elements are the same width as the base */
   background-color: #999; /* Set color for the upper and lower parts */
   border-radius: 2px; /* Optional: rounded corners */
 }

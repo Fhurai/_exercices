@@ -16,7 +16,8 @@ function generateWave(){
 }
 
 function generateDroplet(){
-    for (let i = 0; i < 250; i++) {
+    const windowSize = window.innerWidth / 2;
+    for (let i = 0; i < windowSize; i++) {
         const droplet = document.createElement('div');
         droplet.className = 'droplet';
         droplet.id = 'droplet' + i;
