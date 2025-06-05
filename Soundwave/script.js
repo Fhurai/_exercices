@@ -1,23 +1,42 @@
-// Get the current width of the browser window in pixels.
-// This value determines how many "droplets" (vertical bars) will be generated.
+// Calculate the number of droplets (vertical bars) based on half the window width.
+// Each droplet represents a segment of the soundwave visualization.
 const elementSize = window.outerWidth / 2;
 const heightSize = window.outerHeight / 2;
 const baseSize = 1;
+const speed = 100; // Animation speed as a percentage (higher is faster)
 const enableMove = true;
 
 /**
  * When the DOM is fully loaded:
- * 1. Generate the initial soundwave visualization.
- * 2. Optionally start an interval that animates the wave by moving/modulating droplets.
+ * - If animation is disabled, create the hoverboard display area for showing values on hover.
+ * - Generate the initial soundwave visualization.
+ * - If animation is disabled, attach hover event listeners to display values.
+ * - If animation is enabled, start an interval to animate the wave by moving/modulating droplets.
  */
 document.addEventListener("DOMContentLoaded", () => {
+    if (!enableMove) generateHoverboard();
     generateWave();
-    if (enableMove) setInterval(moveModulation, 1); // Animates the wave every 1ms (very fast).
+    if (!enableMove) hoverValue();
+    if (enableMove) setInterval(moveModulation, (speed > 100 ? 1 : 100 - speed));
 });
 
 /**
+ * Creates a hoverboard element at the top of the page to display values
+ * when hovering over modulation bars. Only used if animation is disabled.
+ */
+function generateHoverboard() {
+    const hoverboard = document.createElement("div");
+    hoverboard.classList =
+        "flex flex-nowrap justify-center items-center overflow-hidden w-full";
+    hoverboard.id = "hoverboard";
+    hoverboard.innerHTML = "&nbsp;";
+    document.body.appendChild(hoverboard);
+}
+
+/**
  * Generates the main wave container and populates it with droplets.
- * The container is styled as a flex row, centered, and fills the screen.
+ * The container is styled as a flex row, centered, and fills the width of the screen.
+ * If animation is disabled, attaches a mouseleave event to clear the hoverboard display.
  */
 function generateWave() {
     const waveContainer = document.createElement("div");
@@ -26,10 +45,17 @@ function generateWave() {
     waveContainer.id = "wave-container";
     document.body.appendChild(waveContainer);
     generateDroplet();
+
+    if (!enableMove) {
+        // Clear hoverboard when mouse leaves the wave area.
+        waveContainer.addEventListener("mouseleave", function () {
+            document.querySelector("#hoverboard").innerHTML = "&nbsp;";
+        });
+    }
 }
 
 /**
- * Generates a number of droplets equal to the windowSize.
+ * Generates a number of droplets equal to elementSize.
  * Each droplet is a flex column containing a modulation (the visual bar).
  */
 function generateDroplet() {
@@ -55,16 +81,16 @@ function generateDroplet() {
  */
 function generateModulation(id) {
     const modulation = document.createElement("div");
-    modulation.className =
-        "flex flex-col items-center justify-center w-full";
+    modulation.className = "flex flex-col items-center justify-center w-full";
     modulation.id = "modulation" + id;
 
     // Random heights for upper and lower segments to create a wave effect.
     const upperHeight = parseInt(Math.random() * (heightSize / 2) - baseSize);
     const lowerHeight = parseInt(Math.random() * (heightSize / 2) - baseSize);
 
-    const upperMargin = parseInt((heightSize / 2) - upperHeight - baseSize);
-    const lowerMargin = parseInt((heightSize / 2) - lowerHeight - baseSize);
+    // Calculate margins to vertically center the modulation bar.
+    const upperMargin = parseInt(heightSize / 2 - upperHeight - baseSize);
+    const lowerMargin = parseInt(heightSize / 2 - lowerHeight - baseSize);
 
     // Upper segment (gray, rounded top)
     const upper = document.createElement("div");
@@ -87,6 +113,10 @@ function generateModulation(id) {
     modulation.appendChild(base);
     modulation.appendChild(lower);
 
+    // Store the sum of upper and lower heights as a value attribute for display on hover.
+    modulation.setAttribute("value", upperHeight + lowerHeight);
+    modulation.title = upperHeight + lowerHeight;
+
     return modulation;
 }
 
@@ -104,4 +134,20 @@ function moveModulation() {
         // Move the first droplet to the end of the container.
         container.appendChild(first);
     }
+}
+
+/**
+ * Attaches mouseover event listeners to each modulation bar.
+ * When hovered, the hoverboard displays the value attribute of the modulation.
+ * Only used if animation is disabled.
+ */
+function hoverValue() {
+    document
+        .querySelectorAll("#wave-container > * > *")
+        .forEach((modulation) => {
+            modulation.addEventListener("mouseover", function (event) {
+                document.querySelector("#hoverboard").innerHTML =
+                    event.currentTarget.getAttribute("value");
+            });
+        });
 }
