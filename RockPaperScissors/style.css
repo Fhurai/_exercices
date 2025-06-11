@@ -1,13 +1,23 @@
+/**
+ * Rock Paper Scissors Game Stylesheet
+ * 
+ * This file defines the visual appearance of the Rock Paper Scissors game board,
+ * cards, scoreboard, and layout. It uses CSS variables for color theming and
+ * flexbox for layout. Card states (front, back, empty) are visually distinct.
+ */
+
+/* Color palette using CSS variables for easy theming */
 :root {
-    --color-black: #1f1f1f;
-    --color-white: #f1f1f1;
-    --color-darkgrey: #3e3e3e;
-    --color-lightgrey: #e3e3e3;
-    --color-red: #e26666;
-    --color-blue: #68a3da;
-    --color-green: #84ca84;
+    --color-black: #1f1f1f; /* Main background */
+    --color-white: #f1f1f1; /* Card front, text */
+    --color-darkgrey: #3e3e3e; /* Board row background */
+    --color-lightgrey: #e3e3e3; /* General text */
+    --color-red: #e26666; /* Loss, computer card back */
+    --color-blue: #68a3da; /* Draw, player card border */
+    --color-green: #84ca84; /* Win */
 }
 
+/* Base layout and typography */
 html,
 body {
     margin: 0;
@@ -28,13 +38,7 @@ a {
     text-decoration: none;
 }
 
-select{
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-}
-
-/**
- */
+/* Main game board container */
 .board {
     border: 1px solid var(--color-lightgrey);
     width: 80%;
@@ -42,13 +46,74 @@ select{
     border-radius: 0.5rem;
 }
 
+/* Each row in the board */
 .board .row {
-    height: 2rem;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
+    height: 8rem;
+    display: block;
 }
 
+/* Container for cards in each row, uses flexbox for layout */
+.board .row .cards {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    height: 8rem;
+    align-items: center;
+}
+
+/* Base card style */
+.board .row .cards .card {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 0.5rem;
+}
+
+/* Computer's cards (back side, red) */
+.board .row .cards .card.back {
+    background-color: var(--color-red);
+    border: 1px double var(--color-white);
+}
+
+/* Player's cards (front side, white, draggable) */
+.board .row .cards .card.front {
+    background-color: var(--color-white);
+    border: 1px double var(--color-blue);
+    cursor: grab;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.board .row .cards .card.front[value="rock"] {
+    background-image: url("./img/rock.png");
+}
+
+.board .row .cards .card.front[value="paper"] {
+    background-image: url("./img/paper.png");
+}
+
+.board .row .cards .card.front[value="scissors"] {
+    background-image: url("./img/scissors.png");
+}
+
+/* Drop zones for cards (empty, dashed border) */
+.board .row .cards .card.empty {
+    background-color: var(--color-black);
+    border: 1px dashed var(--color-white);
+    width: 7.5rem;
+    height: 7.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Highlight the scoreboard row */
+.board .row:nth-child(3) {
+    background-color: var(--color-darkgrey);
+}
+
+/* Scoreboard: win, draw, loss colors */
 #win {
     color: var(--color-green);
     padding: 0 0.5rem;
@@ -62,4 +127,71 @@ select{
 #loss {
     color: var(--color-red);
     padding: 0 0.5rem;
+}
+
+/* Scoreboard separators */
+.board .row .cards hr {
+    margin: 0.5rem;
+    height: 4rem;
+}
+
+/* Focus styles for accessibility */
+.board .row .cards .card:focus {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(104, 163, 218, 0.2);
+}
+
+/* Transition for card hover and active states */
+.board .row .cards .card {
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+.board .row .cards .card.front:hover,
+.board .row .cards .card.front:active {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(104, 163, 218, 0.15);
+    z-index: 2;
+}
+
+/* Responsive design for mobile screens */
+@media (max-width: 600px) {
+    .board {
+        width: 98%;
+    }
+    .board .row {
+        height: 5rem;
+    }
+    .board .row .cards {
+        height: 5rem;
+    }
+    .board .row .cards .card,
+    .board .row .cards .card.empty {
+        width: 4rem;
+        height: 4rem;
+        font-size: 1.2rem;
+    }
+    .board .row .cards .card.front::before {
+        width: 4rem;
+        height: 4rem;
+        font-size: 1.2rem;
+    }
+}
+
+/* Utility classes */
+.mt-2 {
+    margin-top: 2rem;
+}
+.mb-2 {
+    margin-bottom: 2rem;
+}
+.text-center {
+    text-align: center;
+}
+
+/* Improved color contrast for scoreboard */
+#win,
+#draw,
+#loss {
+    font-weight: bold;
+    text-shadow: 0 1px 2px #0008;
 }
