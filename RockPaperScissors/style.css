@@ -1,12 +1,22 @@
 /**
  * Rock Paper Scissors Game Stylesheet
- * 
- * This file defines the visual appearance of the Rock Paper Scissors game board,
- * cards, scoreboard, and layout. It uses CSS variables for color theming and
- * flexbox for layout. Card states (front, back, empty) are visually distinct.
+ *
+ * This stylesheet defines the appearance and layout of the Rock Paper Scissors game.
+ * It uses CSS variables for theming, flexbox for layout, and includes accessibility,
+ * responsive, and visual enhancement features.
+ *
+ * Sections:
+ * 1. Color palette and variables
+ * 2. Base layout and typography
+ * 3. Board and row structure
+ * 4. Card styles (front, back, empty)
+ * 5. Card images for rock, paper, scissors
+ * 6. Scoreboard and utility classes
+ * 7. Accessibility and transitions
+ * 8. Responsive design
  */
 
-/* Color palette using CSS variables for easy theming */
+/* 1. Color palette using CSS variables for easy theming */
 :root {
     --color-black: #1f1f1f; /* Main background */
     --color-white: #f1f1f1; /* Card front, text */
@@ -17,7 +27,7 @@
     --color-green: #84ca84; /* Win */
 }
 
-/* Base layout and typography */
+/* 2. Base layout and typography */
 html,
 body {
     margin: 0;
@@ -38,7 +48,7 @@ a {
     text-decoration: none;
 }
 
-/* Main game board container */
+/* 3. Main game board container and row structure */
 .board {
     border: 1px solid var(--color-lightgrey);
     width: 80%;
@@ -46,13 +56,11 @@ a {
     border-radius: 0.5rem;
 }
 
-/* Each row in the board */
 .board .row {
     height: 8rem;
     display: block;
 }
 
-/* Container for cards in each row, uses flexbox for layout */
 .board .row .cards {
     display: flex;
     flex-flow: row nowrap;
@@ -61,11 +69,14 @@ a {
     align-items: center;
 }
 
+/* 4. Card styles */
 /* Base card style */
 .board .row .cards .card {
     width: 7rem;
     height: 7rem;
     border-radius: 0.5rem;
+    /* Transition for hover/active/focus states */
+    transition: transform 0.15s, box-shadow 0.15s;
 }
 
 /* Computer's cards (back side, red) */
@@ -74,7 +85,7 @@ a {
     border: 1px double var(--color-white);
 }
 
-/* Player's cards (front side, white, draggable) */
+/* Player's cards (front side, white, draggable, with image) */
 .board .row .cards .card.front {
     background-color: var(--color-white);
     border: 1px double var(--color-blue);
@@ -84,6 +95,7 @@ a {
     background-position: center;
 }
 
+/* 5. Card images for rock, paper, scissors */
 .board .row .cards .card.front[value="rock"] {
     background-image: url("./img/rock.png");
 }
@@ -108,6 +120,7 @@ a {
     position: relative;
 }
 
+/* 6. Scoreboard and utility classes */
 /* Highlight the scoreboard row */
 .board .row:nth-child(3) {
     background-color: var(--color-darkgrey);
@@ -118,12 +131,10 @@ a {
     color: var(--color-green);
     padding: 0 0.5rem;
 }
-
 #draw {
     color: var(--color-blue);
     padding: 0 0.5rem;
 }
-
 #loss {
     color: var(--color-red);
     padding: 0 0.5rem;
@@ -135,6 +146,26 @@ a {
     height: 4rem;
 }
 
+/* Utility classes for spacing and alignment */
+.mt-2 {
+    margin-top: 2rem;
+}
+.mb-2 {
+    margin-bottom: 2rem;
+}
+.text-center {
+    text-align: center;
+}
+
+/* Improved color contrast for scoreboard */
+#win,
+#draw,
+#loss {
+    font-weight: bold;
+    text-shadow: 0 1px 2px #0008;
+}
+
+/* 7. Accessibility and transitions */
 /* Focus styles for accessibility */
 .board .row .cards .card:focus {
     outline: 2px solid var(--color-blue);
@@ -142,10 +173,7 @@ a {
     box-shadow: 0 0 0 4px rgba(104, 163, 218, 0.2);
 }
 
-/* Transition for card hover and active states */
-.board .row .cards .card {
-    transition: transform 0.15s, box-shadow 0.15s;
-}
+/* Card hover and active states for interactivity */
 .board .row .cards .card.front:hover,
 .board .row .cards .card.front:active {
     transform: scale(1.05);
@@ -153,7 +181,7 @@ a {
     z-index: 2;
 }
 
-/* Responsive design for mobile screens */
+/* 8. Responsive design for mobile screens */
 @media (max-width: 600px) {
     .board {
         width: 98%;
@@ -175,23 +203,4 @@ a {
         height: 4rem;
         font-size: 1.2rem;
     }
-}
-
-/* Utility classes */
-.mt-2 {
-    margin-top: 2rem;
-}
-.mb-2 {
-    margin-bottom: 2rem;
-}
-.text-center {
-    text-align: center;
-}
-
-/* Improved color contrast for scoreboard */
-#win,
-#draw,
-#loss {
-    font-weight: bold;
-    text-shadow: 0 1px 2px #0008;
 }
