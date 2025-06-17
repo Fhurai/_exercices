@@ -62,7 +62,7 @@ function generateDroplet() {
     for (let i = 0; i < elementSize; i++) {
         const droplet = document.createElement("div");
         droplet.id = "droplet" + i;
-        droplet.className = `flex-1 min-w-0 max-w-[1.5em] flex flex-col items-center justify-end hover:bg-red-500`;
+        droplet.className = `flex-1 min-w-0 max-w-[1.5em] flex flex-col items-center justify-end`;
 
         // Each droplet contains a modulation (upper, base, lower).
         droplet.appendChild(generateModulation(i));
