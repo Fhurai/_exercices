@@ -1,38 +1,44 @@
+[id^="droplet"]>*>*{
+    transition: transform 0.3s ease;
+    transform-origin: center;
+}
+
 /** Hover */
 [id^="droplet"]:hover>*>* {
     --tw-bg-opacity: 1;
     background-color: rgb(239 68 68 / var(--tw-bg-opacity, 1));
-}
-
-[id^="droplet"]:hover>*>*:nth-child(2) {
-    --tw-bg-opacity: 1;
-    background-color: rgb(239 68 68 / var(--tw-bg-opacity, 1));
-    border-width: 5px!important;
-    border-color: rgb(239 68 68 / var(--tw-bg-opacity, 1));
+    transform: scaleY(2);
+    max-width: 1.5em;
 }
 
 /** After */
 [id^="droplet"]:hover+div>*>* {
     background-color: rgb(218 92 89 / var(--tw-bg-opacity, 1));
+    transform: scaleY(1.75);
 }
 
 [id^="droplet"]:hover+div+div>*>* {
     background-color: rgb(196 117 111 / var(--tw-bg-opacity, 1));
+    transform: scaleY(1.5);
 }
 
 [id^="droplet"]:hover+div+div+div>*>* {
     background-color: rgb(175 140 135 / var(--tw-bg-opacity, 1));
+    transform: scaleY(1.25);
 }
 
 /** Before */
 [id^="droplet"]:has(+div:hover)>*>* {
     background-color: rgb(218 92 89 / var(--tw-bg-opacity, 1));
+    transform: scaleY(1.75);
 }
 
 [id^="droplet"]:has(+div+div:hover)>*>* {
     background-color: rgb(196 117 111 / var(--tw-bg-opacity, 1));
+    transform: scaleY(1.5);
 }
 
 [id^="droplet"]:has(+div+div+div:hover)>*>* {
     background-color: rgb(175 140 135 / var(--tw-bg-opacity, 1));
+    transform: scaleY(1.25);
 }
