@@ -1,0 +1,94 @@
+:root {
+    --color-black: #1f1f1f;
+    --color-white: #f1f1f1;
+    --color-darkgrey: #3e3e3e;
+    --color-lightgrey: #e3e3e3;
+    --color-red: #e26666;
+    --color-blue: #68a3da;
+    --size-width: 250px;
+    --size-height: 444px;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: var(--color-black);
+    color: var(--color-lightgrey);
+    overflow-x: hidden;
+}
+
+h3 {
+    text-align: center;
+}
+
+a {
+    color: var(--color-lightgrey);
+    text-decoration: none;
+}
+
+hr {
+    width: 100%;
+}
+
+/**
+ * Carousel
+ */
+
+.carousel {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.carousel .navbar {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.carousel-container {
+    width: 100%;
+    overflow-x: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.carousel-track {
+    display: flex;
+
+    width: fit-content;
+    scroll-snap-align: start;
+}
+
+.carousel-item {
+    flex: 0 0 calc(100% / 8); /* 8 images per "page" */
+    scroll-snap-align: start;
+    box-sizing: border-box;
+    min-width: var(--size-width);
+    max-width: var(--size-width);
+    min-height: var(--size-height);
+    max-height: var(--size-height);
+}
+
+.carousel-item .wrapper {
+    background-color: var(--black);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-item .wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.carousel-item .wrapper img.full-height {
+    width: unset;
+    height: 100%;
+    display: block;
+}
