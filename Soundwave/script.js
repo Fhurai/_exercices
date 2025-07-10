@@ -1,6 +1,6 @@
 // Calculate the number of droplets (vertical bars) based on half the window width.
 // Each droplet represents a segment of the soundwave visualization.
-const elementSize = 10;//window.outerWidth / 2;
+const elementSize = 100;//window.outerWidth / 2;
 const heightSize = window.outerHeight / 2;
 const baseSize = 1;
 const speed = 100; // Animation speed as a percentage (higher is faster)
