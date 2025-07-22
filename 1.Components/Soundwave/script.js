@@ -30,7 +30,7 @@ function generateHoverboard() {
         "flex flex-nowrap justify-center items-center overflow-hidden w-full";
     hoverboard.id = "hoverboard";
     hoverboard.innerHTML = "&nbsp;";
-    document.body.appendChild(hoverboard);
+    document.querySelector('#wave').appendChild(hoverboard);
 }
 
 /**
@@ -43,7 +43,7 @@ function generateWave() {
     waveContainer.className =
         "flex flex-nowrap justify-center items-center overflow-hidden w-full";
     waveContainer.id = "wave-container";
-    document.body.appendChild(waveContainer);
+    document.querySelector('#wave').appendChild(waveContainer);
     generateDroplet();
 
     if (!enableMove) {

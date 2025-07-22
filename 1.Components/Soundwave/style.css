@@ -1,3 +1,31 @@
+:root {
+    --color-black: #1f1f1f;
+    --color-white: #f1f1f1;
+    --color-darkgrey: #3e3e3e;
+    --color-lightgrey: #e3e3e3;
+    --color-red: #e26666;
+    --color-blue: #68a3da;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: var(--color-black);
+    color: var(--color-lightgrey);
+    overflow-x: hidden;
+}
+
+h3 {
+    text-align: center;
+}
+
+a {
+    color: var(--color-lightgrey);
+    text-decoration: none;
+}
+
 /**
  * All elements in modulations
  */
