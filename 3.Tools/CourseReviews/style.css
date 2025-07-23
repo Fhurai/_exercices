@@ -4,6 +4,8 @@
     --color-darkgrey: #3e3e3e;
     --color-lightgrey: #e3e3e3;
     --color-brown: #634b36;
+    --color-green: #0f7c0d;
+    --color-red: #7c0f0d;
 }
 
 html,
@@ -29,9 +31,18 @@ hr {
     width: 100%;
 }
 
+.center{
+    width: 50%;
+    margin: 0 auto;
+}
+
 /**
  * Dialog
  */
+#display {
+    text-align: center;
+}
+
 .dialog {
     background-color: var(--color-darkgrey);
     width: 50%;
@@ -42,6 +53,11 @@ hr {
 
 .dialog::before {
     content: attr(data-correct);
+    display: block;
+    background-color: var(--color-black);
+    border-radius: 0.5rem 0.5rem 0 0;
+    text-align: center;
+    color: var(--color-green);
 }
 
 .dialog label {
@@ -79,4 +95,32 @@ hr {
 .dialog .btns button:hover {
     filter: brightness(0.5);
     color: var(--color-white);
+}
+
+/**
+ * indicators
+ */
+#indicators {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+#indicators span {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: var(--color-brown);
+    border: 2px solid var(--color-brown);
+    border-radius: 0.5rem;
+    margin: 1px;
+    box-shadow: inset .15rem .15rem .05rem var(--color-black);
+}
+
+#indicators span.fail {
+    background-color: var(--color-red);
+}
+
+#indicators span.success {
+    background-color: var(--color-green);
 }

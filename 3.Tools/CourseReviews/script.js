@@ -1,10 +1,17 @@
+// Stores the result of each question (true if answered correctly, false otherwise)
 var results = [];
+// Stores the indices of questions that have not been answered correctly yet
+var uncorrectQuestions = [];
 
+// Wait for the DOM to be fully loaded before starting the review logic
 document.addEventListener('DOMContentLoaded', function(){
+    // Check if the 'questions' variable exists and is a non-empty array
     if (typeof questions !== 'undefined') {
         if(Array.isArray(questions) && questions.length > 0){
+            // Initialize the review session
             launchReviews();
-            actionCheckAnswer();
+            // Check the answer for the first question
+            checkAnswer();
         } else {
             console.warn('questions is empty !');
         }
@@ -13,52 +20,130 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 });
 
+/**
+ * Initializes the review session by resetting results and uncorrectQuestions,
+ * then displays the first question.
+ */
 function launchReviews(){
+    // Set all results to false (not answered correctly)
     results = Array.from(questions).map(() => false);
-    displayQuestionBox(0);
+    // All questions are initially uncorrect
+    uncorrectQuestions = results.map((elt, idx) => idx);
+    // Display a random uncorrect question
+    displayQuestionBox(getIndexUncorrect());
 }
 
+/**
+ * Displays the question box for the given question number.
+ * Shows the question, textarea for answer, and validation button.
+ * Also updates indicators and sets up event listeners.
+ * @param {number} questionNumber - Index of the question to display
+ */
 function displayQuestionBox(questionNumber){
+    // Clear previous content
+    document.querySelector('#display').innerHTML = "";
+    // Create dialog container
     const dialog = document.createElement('div');
     dialog.className = 'dialog';
-    dialog.dataset.correct = 0;
+    // Set the percentage of correct answers as a data attribute
+    dialog.dataset.correct = Math.ceil(results.filter((res) => res).length / questions.length * 100).toString() + "%";
 
+    // Create and append the question label
     const label = document.createElement('label');
     label.htmlFor = 'answer';
     label.innerText = questions[questionNumber][0];
     dialog.appendChild(label);
 
+    // Create and append the textarea for user answer
     const textarea = document.createElement('textarea');
     textarea.id = label.htmlFor;
     dialog.appendChild(textarea);
 
+    // Create and append the button container
     const btns = document.createElement('div');
     btns.classList = 'btns';
     dialog.appendChild(btns);
 
+    // Create and append the validation button
     const btn = document.createElement('button');
     btn.innerText = 'Valider la réponse';
     btns.appendChild(btn);
 
-    document.body.appendChild(dialog);
+    // Add the dialog to the display area
+    document.querySelector('#display').appendChild(dialog);
+
+    // Update question indicators
+    questionsIndicators();
+    // Set up event listeners for answer validation
+    actionCheckAnswer();
 }
 
+/**
+ * Checks the user's answer for the current question.
+ * If correct, updates results and removes from uncorrectQuestions.
+ * Displays next question or congratulates if all are answered.
+ */
 function checkAnswer(){
-
+    // Iterate through all questions to find the current one
     Array.from(questions).forEach((array, idx) => {
-        if(document.querySelector('label').innerText === array[0] && document.querySelector('textarea').value === array[1]){
-            results[idx] = true;
+        // Check if the array exist as an array
+        if(Array.isArray(array)){
+            // Check if the displayed question matches and the answer is correct
+            if(document.querySelector('label').innerText === array[0] && document.querySelector('textarea').value.trim() === array[1]){
+                results[idx] = true;
+                // Remove the question from uncorrectQuestions
+                uncorrectQuestions.splice(uncorrectQuestions.indexOf(idx), 1);
+            }
         }
     });
-    document.querySelector('.dialog').dataset.correct = results;
+    // If there are still uncorrect questions, display another one
+    if(uncorrectQuestions.length > 0){
+        displayQuestionBox(getIndexUncorrect());
+    }else{
+        // All questions answered correctly
+        questionsIndicators();
+        document.querySelector('#display').innerHTML = "You answered all questions ! Congratulations !";
+    }
 }
 
+/**
+ * Sets up event listeners for the validation button and textarea.
+ * Allows answer submission via button click or pressing Enter.
+ */
 function actionCheckAnswer(){
+    // Validate answer on button click
     document.querySelector('button').addEventListener('click', checkAnswer);
 
+    // Validate answer on Enter key in textarea
     document.querySelector('textarea').addEventListener('keyup', function(event){
         if(event.key === "Enter"){
             checkAnswer();
         }
+    });
+}
+
+/**
+ * Returns a random index from the uncorrectQuestions array.
+ * Used to select the next question to display.
+ * @returns {number} Index of a random uncorrect question
+ */
+function getIndexUncorrect(){
+    return uncorrectQuestions[Math.floor(Math.random() * uncorrectQuestions.length)];
+}
+
+/**
+ * Updates the visual indicators for each question.
+ * Shows success or fail status for each question.
+ */
+function questionsIndicators(){
+    // Clear previous indicators
+    document.querySelector('#indicators').innerHTML = '';
+
+    // Create and append an indicator for each question
+    results.forEach((result, idx) => {
+        const indicator = document.createElement('span');
+        indicator.id = 'result' +idx;
+        indicator.classList = result ? 'success' : 'fail';
+        document.querySelector('#indicators').appendChild(indicator);
     });
 }
