@@ -1,0 +1,82 @@
+:root {
+    --color-black: #1f1f1f;
+    --color-white: #f1f1f1;
+    --color-darkgrey: #3e3e3e;
+    --color-lightgrey: #e3e3e3;
+    --color-brown: #634b36;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: var(--color-black);
+    color: var(--color-lightgrey);
+    overflow-x: hidden;
+}
+
+h3 {
+    text-align: center;
+}
+
+a {
+    color: var(--color-lightgrey);
+    text-decoration: none;
+}
+
+hr {
+    width: 100%;
+}
+
+/**
+ * Dialog
+ */
+.dialog {
+    background-color: var(--color-darkgrey);
+    width: 50%;
+    margin: 0 auto;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.dialog::before {
+    content: attr(data-correct);
+}
+
+.dialog label {
+    display: block;
+    margin: 0.5rem 0;
+}
+
+.dialog textarea {
+    display: block;
+    resize: none;
+    width: calc(100% - 1rem);
+    height: 20rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-black);
+    color: var(--color-lightgrey);
+    padding: 0.5rem;
+}
+
+.dialog .btns {
+    display: flex;
+    flex-flow: row-reverse;
+}
+
+.dialog .btns button {
+    background-color: var(--color-darkgrey);
+    color: var(--color-lightgrey);
+    border-radius: 0.5rem;
+    border-style: double;
+    border-color: var(--color-lightgrey);
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.dialog .btns button:hover {
+    filter: brightness(0.5);
+    color: var(--color-white);
+}
