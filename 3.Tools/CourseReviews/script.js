@@ -4,18 +4,18 @@ var results = [];
 var uncorrectQuestions = [];
 
 // Wait for the DOM to be fully loaded before starting the review logic
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
     // Check if the 'questions' variable exists and is a non-empty array
     if (typeof questions !== 'undefined') {
-        if(Array.isArray(questions) && questions.length > 0){
+        if (Array.isArray(questions) && questions.length > 0) {
             // Initialize the review session
             launchReviews();
-            // Check the answer for the first question
-            checkAnswer();
         } else {
+            // Warn if questions array is empty
             console.warn('questions is empty !');
         }
     } else {
+        // Error if questions variable does not exist
         console.error('questions does not exist !');
     }
 });
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function(){
  * Initializes the review session by resetting results and uncorrectQuestions,
  * then displays the first question.
  */
-function launchReviews(){
+function launchReviews() {
     // Set all results to false (not answered correctly)
     results = Array.from(questions).map(() => false);
     // All questions are initially uncorrect
@@ -39,14 +39,12 @@ function launchReviews(){
  * Also updates indicators and sets up event listeners.
  * @param {number} questionNumber - Index of the question to display
  */
-function displayQuestionBox(questionNumber){
-    // Clear previous content
+function displayQuestionBox(questionNumber) {
+    // Clear previous content in the display area
     document.querySelector('#display').innerHTML = "";
     // Create dialog container
     const dialog = document.createElement('div');
     dialog.className = 'dialog';
-    // Set the percentage of correct answers as a data attribute
-    dialog.dataset.correct = Math.ceil(results.filter((res) => res).length / questions.length * 100).toString() + "%";
 
     // Create and append the question label
     const label = document.createElement('label');
@@ -69,10 +67,16 @@ function displayQuestionBox(questionNumber){
     btn.innerText = 'Valider la réponse';
     btns.appendChild(btn);
 
+    // Create and append a warning/alert area for feedback
+    const warning = document.createElement('div');
+    warning.classList = 'alert';
+    warning.innerText = 'Ceci est un test d\'avertissement';
+    btns.appendChild(warning);
+
     // Add the dialog to the display area
     document.querySelector('#display').appendChild(dialog);
 
-    // Update question indicators
+    // Update question indicators (success/fail for each question)
     questionsIndicators();
     // Set up event listeners for answer validation
     actionCheckAnswer();
@@ -83,23 +87,34 @@ function displayQuestionBox(questionNumber){
  * If correct, updates results and removes from uncorrectQuestions.
  * Displays next question or congratulates if all are answered.
  */
-function checkAnswer(){
+function checkAnswer() {
+    let delay = 3000; // Default delay before showing next question
     // Iterate through all questions to find the current one
     Array.from(questions).forEach((array, idx) => {
-        // Check if the array exist as an array
-        if(Array.isArray(array)){
-            // Check if the displayed question matches and the answer is correct
-            if(document.querySelector('label').innerText === array[0] && document.querySelector('textarea').value.trim() === array[1]){
+        // Check if the array exists as an array
+        if (Array.isArray(array)) {
+            // If the displayed question matches and the answer is correct
+            if (document.querySelector('label').innerText === array[0] && document.querySelector('textarea').value.trim() === array[1]) {
                 results[idx] = true;
                 // Remove the question from uncorrectQuestions
                 uncorrectQuestions.splice(uncorrectQuestions.indexOf(idx), 1);
+                delay = 0; // No delay if correct
+            } else if (document.querySelector('label').innerText === array[0] && document.querySelector('textarea').value.trim() !== array[1]) {
+                // If answer is incorrect, show the correct answer in alert
+                document.querySelector('.alert').innerText = "Fail ! The complete answer is \n\"" + array[1] + "\"";
+                document.querySelector('.alert').classList.add('visible');
+                delay = 3000; // Delay before next question
             }
         }
     });
+
     // If there are still uncorrect questions, display another one
-    if(uncorrectQuestions.length > 0){
-        displayQuestionBox(getIndexUncorrect());
-    }else{
+    if (uncorrectQuestions.length > 0) {
+        setTimeout(() => {
+            displayQuestionBox(getIndexUncorrect());
+            document.querySelector('#answer').focus();
+        }, delay);
+    } else {
         // All questions answered correctly
         questionsIndicators();
         document.querySelector('#display').innerHTML = "You answered all questions ! Congratulations !";
@@ -110,13 +125,14 @@ function checkAnswer(){
  * Sets up event listeners for the validation button and textarea.
  * Allows answer submission via button click or pressing Enter.
  */
-function actionCheckAnswer(){
+function actionCheckAnswer() {
     // Validate answer on button click
     document.querySelector('button').addEventListener('click', checkAnswer);
 
     // Validate answer on Enter key in textarea
-    document.querySelector('textarea').addEventListener('keyup', function(event){
-        if(event.key === "Enter"){
+    document.querySelector('textarea').addEventListener('keydown', function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
             checkAnswer();
         }
     });
@@ -127,7 +143,7 @@ function actionCheckAnswer(){
  * Used to select the next question to display.
  * @returns {number} Index of a random uncorrect question
  */
-function getIndexUncorrect(){
+function getIndexUncorrect() {
     return uncorrectQuestions[Math.floor(Math.random() * uncorrectQuestions.length)];
 }
 
@@ -135,14 +151,14 @@ function getIndexUncorrect(){
  * Updates the visual indicators for each question.
  * Shows success or fail status for each question.
  */
-function questionsIndicators(){
+function questionsIndicators() {
     // Clear previous indicators
     document.querySelector('#indicators').innerHTML = '';
 
     // Create and append an indicator for each question
     results.forEach((result, idx) => {
         const indicator = document.createElement('span');
-        indicator.id = 'result' +idx;
+        indicator.id = 'result' + idx;
         indicator.classList = result ? 'success' : 'fail';
         document.querySelector('#indicators').appendChild(indicator);
     });

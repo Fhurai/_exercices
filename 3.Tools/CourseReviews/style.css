@@ -79,6 +79,7 @@ hr {
 .dialog .btns {
     display: flex;
     flex-flow: row-reverse;
+    width: 100%;
 }
 
 .dialog .btns button {
@@ -90,11 +91,28 @@ hr {
     margin: 0.5rem 0;
     padding: 0.5rem;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .dialog .btns button:hover {
     filter: brightness(0.5);
     color: var(--color-white);
+}
+
+.dialog .btns .alert{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-self: center;
+    flex: 1;
+    color: var(--color-red);
+    filter: brightness(3);
+    font-weight: bold;
+    visibility: hidden;
+}
+
+.dialog .btns .alert.visible{
+    visibility: visible;
 }
 
 /**
