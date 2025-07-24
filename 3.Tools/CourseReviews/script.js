@@ -80,6 +80,9 @@ function displayQuestionBox(questionNumber) {
     questionsIndicators();
     // Set up event listeners for answer validation
     actionCheckAnswer();
+
+    // Focus the answer element
+    document.querySelector('#answer').focus();
 }
 
 /**
